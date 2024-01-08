@@ -9,22 +9,20 @@
 /* Begin PBXBuildFile section */
 		C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF96E2B3D4B2000832586 /* AppDelegate.swift */; };
 		C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9702B3D4B2000832586 /* SceneDelegate.swift */; };
-		C08DF9732B3D4B2000832586 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9722B3D4B2000832586 /* ViewController.swift */; };
+		C08DF9732B3D4B2000832586 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9722B3D4B2000832586 /* MainViewController.swift */; };
 		C08DF9782B3D4B2100832586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C08DF9772B3D4B2100832586 /* Assets.xcassets */; };
 		C08DF97B2B3D4B2100832586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08DF9792B3D4B2100832586 /* LaunchScreen.storyboard */; };
-		C095E7A82B4AAA1300D77D79 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095E7A72B4AAA1300D77D79 /* CustomCell.swift */; };
 		C095E7AA2B4C5B8300D77D79 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095E7A92B4C5B8300D77D79 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C08DF96B2B3D4B2000832586 /* iOS Test Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Test Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C08DF96B2B3D4B2000832586 /* TableView Screens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TableView Screens.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08DF96E2B3D4B2000832586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C08DF9702B3D4B2000832586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C08DF9722B3D4B2000832586 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C08DF9722B3D4B2000832586 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C08DF9772B3D4B2100832586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C08DF97A2B3D4B2100832586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C08DF97C2B3D4B2100832586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C095E7A72B4AAA1300D77D79 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		C095E7A92B4C5B8300D77D79 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -42,7 +40,7 @@
 		C08DF9622B3D4B2000832586 = {
 			isa = PBXGroup;
 			children = (
-				C08DF96D2B3D4B2000832586 /* iOS Test Task */,
+				C08DF96D2B3D4B2000832586 /* TableView Screens */,
 				C08DF96C2B3D4B2000832586 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,19 +48,20 @@
 		C08DF96C2B3D4B2000832586 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C08DF96B2B3D4B2000832586 /* iOS Test Task.app */,
+				C08DF96B2B3D4B2000832586 /* TableView Screens.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C08DF96D2B3D4B2000832586 /* iOS Test Task */ = {
+		C08DF96D2B3D4B2000832586 /* TableView Screens */ = {
 			isa = PBXGroup;
 			children = (
 				C095E7A62B4AA9BF00D77D79 /* Support */,
-				C08DF9722B3D4B2000832586 /* ViewController.swift */,
+				C08DF9722B3D4B2000832586 /* MainViewController.swift */,
+				C095E7A92B4C5B8300D77D79 /* Model.swift */,
 				C08DF97C2B3D4B2100832586 /* Info.plist */,
 			);
-			path = "iOS Test Task";
+			path = "TableView Screens";
 			sourceTree = "<group>";
 		};
 		C095E7A62B4AA9BF00D77D79 /* Support */ = {
@@ -72,8 +71,6 @@
 				C08DF9772B3D4B2100832586 /* Assets.xcassets */,
 				C08DF9792B3D4B2100832586 /* LaunchScreen.storyboard */,
 				C08DF96E2B3D4B2000832586 /* AppDelegate.swift */,
-				C095E7A72B4AAA1300D77D79 /* CustomCell.swift */,
-				C095E7A92B4C5B8300D77D79 /* Model.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -81,10 +78,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C08DF96A2B3D4B2000832586 /* iOS Test Task */ = {
+		C08DF96A2B3D4B2000832586 /* TableView Screens */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C08DF97F2B3D4B2100832586 /* Build configuration list for PBXNativeTarget "iOS Test Task" */;
+			buildConfigurationList = C08DF97F2B3D4B2100832586 /* Build configuration list for PBXNativeTarget "TableView Screens" */;
 			buildPhases = (
+				C074DC302B4EC6F90077E929 /* ShellScript */,
 				C08DF9672B3D4B2000832586 /* Sources */,
 				C08DF9682B3D4B2000832586 /* Frameworks */,
 				C08DF9692B3D4B2000832586 /* Resources */,
@@ -93,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = "iOS Test Task";
+			name = "TableView Screens";
 			productName = "iOS Test Task";
-			productReference = C08DF96B2B3D4B2000832586 /* iOS Test Task.app */;
+			productReference = C08DF96B2B3D4B2000832586 /* TableView Screens.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C08DF9662B3D4B2000832586 /* Build configuration list for PBXProject "iOS Test Task" */;
+			buildConfigurationList = C08DF9662B3D4B2000832586 /* Build configuration list for PBXProject "TableView Screens" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C08DF96A2B3D4B2000832586 /* iOS Test Task */,
+				C08DF96A2B3D4B2000832586 /* TableView Screens */,
 			);
 		};
 /* End PBXProject section */
@@ -143,15 +141,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C074DC302B4EC6F90077E929 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C08DF9672B3D4B2000832586 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C095E7AA2B4C5B8300D77D79 /* Model.swift in Sources */,
-				C08DF9732B3D4B2000832586 /* ViewController.swift in Sources */,
+				C08DF9732B3D4B2000832586 /* MainViewController.swift in Sources */,
 				C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */,
-				C095E7A82B4AAA1300D77D79 /* CustomCell.swift in Sources */,
 				C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,8 +314,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B97S35AF9X;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS Test Task/Info.plist";
+				INFOPLIST_FILE = "TableView Screens/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -309,7 +327,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "babayanarmen.iOS-Test-Task";
+				PRODUCT_BUNDLE_IDENTIFIER = "babayanarmen.TableView-Screens";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -328,8 +346,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B97S35AF9X;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS Test Task/Info.plist";
+				INFOPLIST_FILE = "TableView Screens/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -340,7 +359,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "babayanarmen.iOS-Test-Task";
+				PRODUCT_BUNDLE_IDENTIFIER = "babayanarmen.TableView-Screens";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -354,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C08DF9662B3D4B2000832586 /* Build configuration list for PBXProject "iOS Test Task" */ = {
+		C08DF9662B3D4B2000832586 /* Build configuration list for PBXProject "TableView Screens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C08DF97D2B3D4B2100832586 /* Debug */,
@@ -363,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C08DF97F2B3D4B2100832586 /* Build configuration list for PBXNativeTarget "iOS Test Task" */ = {
+		C08DF97F2B3D4B2100832586 /* Build configuration list for PBXNativeTarget "TableView Screens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C08DF9802B3D4B2100832586 /* Debug */,

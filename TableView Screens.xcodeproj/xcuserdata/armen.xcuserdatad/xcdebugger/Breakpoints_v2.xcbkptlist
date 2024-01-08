@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "242ABD0C-C2AE-499B-98E6-4F054927CC17"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "955E3313-BC9E-48EA-B53E-1DAF02FB8E58"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS Test Task/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "init?(coder:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "955E3313-BC9E-48EA-B53E-1DAF02FB8E58 - 6d8c05a33cf64975"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_Test_Task.customCell.setupCell() -&gt; ()"
+                  moduleName = "iOS Test Task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/armen/Documents/iOS%20Test%20Task/iOS%20Test%20Task/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "1752">
+               </Location>
+               <Location
+                  uuid = "955E3313-BC9E-48EA-B53E-1DAF02FB8E58 - 93776d388ade90a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_Test_Task.customCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;iOS_Test_Task.customCell&gt;"
+                  moduleName = "iOS Test Task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/armen/Documents/iOS%20Test%20Task/iOS%20Test%20Task/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "955E3313-BC9E-48EA-B53E-1DAF02FB8E58 - ab7aa3cbafbdf122"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_Test_Task.customCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;iOS_Test_Task.customCell&gt;"
+                  moduleName = "iOS Test Task"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/armen/Documents/iOS%20Test%20Task/iOS%20Test%20Task/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
