@@ -67,21 +67,20 @@ private let tableView = UITableView()
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
-
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
 
 final class CustomCell: UITableViewCell {
     let countryFlag = UIImageView()
-    var countryName = UILabel()
+    let countryName = UILabel()
+    let countryCapital = UILabel()
+    let countryDescription = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -89,27 +88,61 @@ final class CustomCell: UITableViewCell {
     }
 
     private func setupCell() {
+        setupCountryFlag()
+        setupCountryName()
+        setupCountryCapital()
+        setupDescription()
+    }
+
+    private func setupCountryFlag() {
         addSubview(countryFlag)
-        addSubview(countryName)
-
         countryFlag.contentMode = .scaleAspectFit
-
         countryFlag.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            countryFlag.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            countryFlag.topAnchor.constraint(equalTo: topAnchor),
+            countryFlag.widthAnchor.constraint(equalToConstant: 60),
+            countryFlag.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+
+    private func setupCountryName() {
+        addSubview(countryName)
+        countryName.font = .systemFont(ofSize: 19)
         countryName.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            countryFlag.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            countryFlag.widthAnchor.constraint(equalToConstant: 50)
+            countryName.leadingAnchor.constraint(equalTo: countryFlag.trailingAnchor, constant: 16),
+            countryName.topAnchor.constraint(equalTo: topAnchor, constant: 5)
         ])
-
-        NSLayoutConstraint.activate([
-            countryName.topAnchor.constraint(equalTo: topAnchor),
-            countryName.leadingAnchor.constraint(equalTo: countryFlag.trailingAnchor)
-        ])
-
     }
 
-    required init? (coder: NSCoder) {
+    private func setupCountryCapital() {
+        addSubview(countryCapital)
+        countryCapital.textColor = .gray
+        countryCapital.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            countryCapital.leadingAnchor.constraint(equalTo: countryFlag.trailingAnchor, constant: 16),
+            countryCapital.topAnchor.constraint(equalTo: countryName.bottomAnchor, constant: 4)
+        ])
+    }
+
+    private func setupDescription() {
+        addSubview(countryDescription)
+        countryDescription.numberOfLines = 0
+        countryDescription.font = .systemFont(ofSize: 19)
+        countryDescription.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            countryDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            countryDescription.topAnchor.constraint(equalTo: countryCapital.bottomAnchor, constant: 8),
+            countryDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            countryDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+        ])
+    }
+
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -124,8 +157,10 @@ extension MainViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomCell
         let country = countries[indexPath.row]
         cell?.countryFlag.image = UIImage(named: country.image)
-        cell?.countryName.text = country.description
-
+        cell?.countryName.text = country.name
+        cell?.countryCapital.text = country.capital
+        cell?.countryDescription.text = country.description
+        cell?.accessoryType = .disclosureIndicator
         return cell!
     }
 
