@@ -15,12 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = CountriesListVC()
         window?.makeKeyAndVisible()
 
-        let controller = MainViewController()
+        let controller = CountriesListVC()
         let navController = UINavigationController(rootViewController: controller)
         window?.rootViewController = navController
     }
-
 }
