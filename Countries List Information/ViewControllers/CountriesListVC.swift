@@ -26,14 +26,11 @@ extension CountriesListVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryInformationCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryInformationCell else { fatalError("The tableView could not dequeue a CustomCell in ViewController") }
         let country = countries[indexPath.row]
-        cell?.countryFlag.image = UIImage(named: country.image)
-        cell?.countryName.text = country.name
-        cell?.countryCapital.text = country.capital
-        cell?.countryDescription.text = country.description
-        cell?.accessoryType = .disclosureIndicator
-        return cell!
+        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: country)
+        return cell
     }
 }
 
@@ -46,6 +43,7 @@ extension CountriesListVC: UITableViewDelegate {
 private extension CountriesListVC {
 
     func setupUI() {
+        title = "Countries"
         setupTableView()
     }
 
