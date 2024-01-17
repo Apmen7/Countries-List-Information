@@ -8,16 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		C03FF35B2B53DF40009F3DC2 /* CountryInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */; };
+		C075CF702B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */; };
 		C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF96E2B3D4B2000832586 /* AppDelegate.swift */; };
 		C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9702B3D4B2000832586 /* SceneDelegate.swift */; };
 		C08DF9732B3D4B2000832586 /* CountriesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9722B3D4B2000832586 /* CountriesListVC.swift */; };
 		C08DF9782B3D4B2100832586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C08DF9772B3D4B2100832586 /* Assets.xcassets */; };
 		C08DF97B2B3D4B2100832586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C08DF9792B3D4B2100832586 /* LaunchScreen.storyboard */; };
-		C095E7AA2B4C5B8300D77D79 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095E7A92B4C5B8300D77D79 /* Model.swift */; };
+		C0A8F0B42B6DA4050090F58B /* CountryPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8F0B32B6DA4050090F58B /* CountryPageVC.swift */; };
+		C0D4FDC72B5728AC00C86FCE /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4FDC62B5728AC00C86FCE /* APIManager.swift */; };
+		C0D4FDC92B572D6C00C86FCE /* CountriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4FDC82B572D6C00C86FCE /* CountriesData.swift */; };
+		C0F0D23A2B7599FB0094D88E /* FetchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0D2392B7599FB0094D88E /* FetchImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInformationCell.swift; sourceTree = "<group>"; };
+		C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C08DF96B2B3D4B2000832586 /* Countries List Information.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countries List Information.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08DF96E2B3D4B2000832586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C08DF9702B3D4B2000832586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +30,10 @@
 		C08DF9772B3D4B2100832586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C08DF97A2B3D4B2100832586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C08DF97C2B3D4B2100832586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C095E7A92B4C5B8300D77D79 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C0A8F0B32B6DA4050090F58B /* CountryPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPageVC.swift; sourceTree = "<group>"; };
+		C0D4FDC62B5728AC00C86FCE /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		C0D4FDC82B572D6C00C86FCE /* CountriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesData.swift; sourceTree = "<group>"; };
+		C0F0D2392B7599FB0094D88E /* FetchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				C08DF9722B3D4B2000832586 /* CountriesListVC.swift */,
+				C0A8F0B32B6DA4050090F58B /* CountryPageVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -52,16 +61,11 @@
 			children = (
 				C08DF9702B3D4B2000832586 /* SceneDelegate.swift */,
 				C08DF96E2B3D4B2000832586 /* AppDelegate.swift */,
+				C0D4FDC62B5728AC00C86FCE /* APIManager.swift */,
+				C0D4FDC82B572D6C00C86FCE /* CountriesData.swift */,
+				C0F0D2392B7599FB0094D88E /* FetchImage.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		C03FF35E2B53E2A1009F3DC2 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C095E7A92B4C5B8300D77D79 /* Model.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C08DF9622B3D4B2000832586 = {
@@ -85,9 +89,9 @@
 			children = (
 				C03FF35D2B53E257009F3DC2 /* Application */,
 				C095E7A62B4AA9BF00D77D79 /* Resources */,
-				C03FF35E2B53E2A1009F3DC2 /* Models */,
 				C03FF35C2B53E1FF009F3DC2 /* ViewControllers */,
 				C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */,
+				C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */,
 			);
 			path = "Countries List Information";
 			sourceTree = "<group>";
@@ -193,11 +197,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C095E7AA2B4C5B8300D77D79 /* Model.swift in Sources */,
+				C0D4FDC72B5728AC00C86FCE /* APIManager.swift in Sources */,
 				C08DF9732B3D4B2000832586 /* CountriesListVC.swift in Sources */,
 				C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */,
 				C03FF35B2B53DF40009F3DC2 /* CountryInformationCell.swift in Sources */,
+				C0A8F0B42B6DA4050090F58B /* CountryPageVC.swift in Sources */,
+				C0D4FDC92B572D6C00C86FCE /* CountriesData.swift in Sources */,
+				C075CF702B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift in Sources */,
 				C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */,
+				C0F0D23A2B7599FB0094D88E /* FetchImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

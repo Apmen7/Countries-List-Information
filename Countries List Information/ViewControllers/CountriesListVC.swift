@@ -9,24 +9,29 @@ import UIKit
 
 final class CountriesListVC: UIViewController {
 
-private var countries = [Country]()
-private let tableView = UITableView()
+    private let apiManager = APIManager()
+    private let tableView = UITableView()
+    private var countries: [Country] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillData()
         setupUI()
+        createData()
     }
 }
 
 // MARK: - Extension UITableViewDataSource
 extension CountriesListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countries.count
+        return countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryInformationCell else { fatalError("The tableView could not dequeue a CustomCell in ViewController") }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "CountryInformationCell", for: indexPath
+        ) as? CountryInformationCell else {
+            return UITableViewCell()
+        }
         let country = countries[indexPath.row]
         cell.accessoryType = .disclosureIndicator
         cell.configure(with: country)
@@ -36,10 +41,16 @@ extension CountriesListVC: UITableViewDataSource {
 
 // MARK: - Extension UITableViewDelegate
 extension CountriesListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let countryPageVC = CountryPageVC()
 
+        countryPageVC.countries = countries
+
+        navigationController?.pushViewController(countryPageVC, animated: true)
+    }
 }
 
-// MARK: - Private functions
+// MARK: - SetupUI
 private extension CountriesListVC {
 
     func setupUI() {
@@ -53,7 +64,7 @@ private extension CountriesListVC {
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(CountryInformationCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CountryInformationCell.self, forCellReuseIdentifier: "CountryInformationCell")
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -64,39 +75,22 @@ private extension CountriesListVC {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+}
 
-    func fillData() {
+// MARK: - Creating Data
+private extension CountriesListVC {
 
-    let argentina = Country(
-    name: "Argentina",
-    capital: "Buenos Aires",
-    description: "In 2004, I completed two Inuit art buying trips to Iqaluit, the capital of Nunavut, Canada’s newest territory. For both trips, I flew out of Ottawa on Canadian airlines.",
-    image: "arg"
-    )
-    countries.append(argentina)
+    func createData() {
 
-    let brazil = Country(
-        name: "Brazil",
-        capital: "Brasilia",
-        description: "You might remember the Dell computer commercials in which a youth reports this exciting news to his friends.",
-        image: "bra"
-    )
-    countries.append(brazil)
+        apiManager.getCountries { [weak self] countries in
+            guard let self = self else {
+                return
+            }
+            self.countries = countries
 
-        let dominicanRepublic = Country(
-            name: "Dominican Republic",
-            capital: "Santo Domingo",
-            description: "",
-            image: "dom"
-        )
-        countries.append(dominicanRepublic)
-
-        let elSalvador = Country(
-            name: "El Salvador",
-            capital: "San Salvador",
-            description: "A lot about how you go about getting this first telescope will depend on your own expertise in astronomy.",
-            image: "sal"
-        )
-        countries.append(elSalvador)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 }

@@ -8,28 +8,32 @@
 import UIKit
 
 final class CountryInformationCell: UITableViewCell {
-    let countryFlag = UIImageView()
-    let countryName = UILabel()
-    let countryCapital = UILabel()
-    let countryDescription = UILabel()
+
+    private let countryFlag = UIImageView()
+    private let countryName = UILabel()
+    private let countryCapital = UILabel()
+    private let countryDescription = UILabel()
+    private let fetchImage = FetchImage.shared
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+// MARK: - Configure Cell
     func configure(with country: Country) {
-        countryFlag.image = UIImage(named: country.image)
+        fetchImage.downloadFlags(with: country, imageView: countryFlag)
         countryName.text = country.name
         countryCapital.text = country.capital
         countryDescription.text = country.description
         }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
+// MARK: - SetupUI
 private extension CountryInformationCell {
 
     func setupCell() {
