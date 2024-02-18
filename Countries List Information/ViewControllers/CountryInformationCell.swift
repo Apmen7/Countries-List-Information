@@ -1,10 +1,3 @@
-//
-//  CountryInformationCell.swift
-//  Countries List Information
-//
-//  Created by Armen on 14.01.2024.
-//
-
 import UIKit
 
 final class CountryInformationCell: UITableViewCell {

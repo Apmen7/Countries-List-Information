@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C03FF35B2B53DF40009F3DC2 /* CountryInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */; };
+		C066DDA02B82467A00C47F4F /* DetailInformationCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C066DD9F2B82467A00C47F4F /* DetailInformationCells.swift */; };
 		C075CF702B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */; };
 		C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF96E2B3D4B2000832586 /* AppDelegate.swift */; };
 		C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DF9702B3D4B2000832586 /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryInformationCell.swift; sourceTree = "<group>"; };
+		C066DD9F2B82467A00C47F4F /* DetailInformationCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationCells.swift; sourceTree = "<group>"; };
 		C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		C08DF96B2B3D4B2000832586 /* Countries List Information.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Countries List Information.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08DF96E2B3D4B2000832586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				C08DF9722B3D4B2000832586 /* CountriesListVC.swift */,
-				C0A8F0B32B6DA4050090F58B /* CountryPageVC.swift */,
+				C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -90,8 +92,9 @@
 				C03FF35D2B53E257009F3DC2 /* Application */,
 				C095E7A62B4AA9BF00D77D79 /* Resources */,
 				C03FF35C2B53E1FF009F3DC2 /* ViewControllers */,
-				C03FF35A2B53DF40009F3DC2 /* CountryInformationCell.swift */,
+				C0A8F0B32B6DA4050090F58B /* CountryPageVC.swift */,
 				C075CF6F2B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift */,
+				C066DD9F2B82467A00C47F4F /* DetailInformationCells.swift */,
 			);
 			path = "Countries List Information";
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				C075CF702B6EA5A50064C4C4 /* ImagesCollectionViewCell.swift in Sources */,
 				C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */,
 				C0F0D23A2B7599FB0094D88E /* FetchImage.swift in Sources */,
+				C066DDA02B82467A00C47F4F /* DetailInformationCells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

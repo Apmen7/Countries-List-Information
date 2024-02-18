@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  iOS Test Task
-//
-//  Created by Armen on 28.12.2023.
-//
-
 import UIKit
 
 final class CountriesListVC: UIViewController {
@@ -23,7 +16,7 @@ final class CountriesListVC: UIViewController {
 // MARK: - Extension UITableViewDataSource
 extension CountriesListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries.count
+        countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,9 +35,8 @@ extension CountriesListVC: UITableViewDataSource {
 // MARK: - Extension UITableViewDelegate
 extension CountriesListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let countryPageVC = CountryPageVC()
-
-        countryPageVC.countries = countries
+        let country = countries[indexPath.row]
+        let countryPageVC = CountryPageVC(country: country)
 
         navigationController?.pushViewController(countryPageVC, animated: true)
     }

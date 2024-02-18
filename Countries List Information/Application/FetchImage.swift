@@ -1,10 +1,3 @@
-//
-//  FetchImage.swift
-//  Countries List Information
-//
-//  Created by Armen on 09.02.2024.
-//
-
 import UIKit
 
 final class FetchImage {
@@ -34,4 +27,5 @@ final class FetchImage {
         }
         task.resume()
     }
+
 }

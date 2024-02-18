@@ -1,10 +1,3 @@
-//
-//  ImagesCollectionViewCell.swift
-//  Countries List Information
-//
-//  Created by Armen on 03.02.2024.
-//
-
 import UIKit
 
 final class ImagesCollectionViewCell: UICollectionViewCell {

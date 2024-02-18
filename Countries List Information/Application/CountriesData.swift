@@ -1,15 +1,9 @@
-//
-//  CountriesData.swift
-//  Countries List Information
-//
-//  Created by Armen on 17.01.2024.
-//
-
 import Foundation
 
 // MARK: - CountriesData
 
 struct CountriesData: Decodable {
+
     let next: String
     let countries: [Country]
 }
