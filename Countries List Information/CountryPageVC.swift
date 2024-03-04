@@ -3,26 +3,18 @@ import UIKit
 final class CountryPageVC: UIViewController {
 
     private let countryName = UILabel()
-    private let countryCapital = UILabel()
     private let countryDescription = UILabel()
     private let tableView = UITableView()
-    private let cellsName = ["Capital", "Population", "Continent"]
-    private let cellsIcons = ["star", "face.smilling", "earth", "globe.desk.fill"]
-
-    private let symbol = UIImage(systemName: "globe.desk.fill")
-
     private var images: [UIImage] = []
-
     private let country: Country
+    private let aboutLabel = UILabel()
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemGray
-        collectionView.register(ImagesCollectionViewCell.self, forCellWithReuseIdentifier: ImagesCollectionViewCell.identifier)
-
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
@@ -37,32 +29,38 @@ final class CountryPageVC: UIViewController {
 
     override func viewDidLoad() {
         setupUI()
-
-        self.collectionView.dataSource = self
     }
+}
 
+// MARK: - Configure func and cell model creating
+private extension CountryPageVC {
     func configure(with country: Country) {
         countryName.text = country.name
-        countryCapital.text = country.capital
-        countryDescription.text = country.description
     }
 
-    func setupTableView() {
-        view.addSubview(tableView)
-
-        tableView.dataSource = self
-
-        tableView.register(DetailInformationCells.self, forCellReuseIdentifier: "DetailInformationCells")
-
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: countryName.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+    func getCellModel(_ country: Country) -> [CountryDetailModel] {
+        var countryInformation: [CountryDetailModel] = []
+        countryInformation.append(
+            CountryDetailModel(
+                icon: "star", title: "Capital", value: country.capital
+            )
+        )
+        countryInformation.append(
+            CountryDetailModel(
+                icon: "face.smiling", title: "Population", value: String(country.population)
+            )
+        )
+        countryInformation.append(
+            CountryDetailModel(
+                icon: "globe.desk.fill", title: "Continent", value: country.continent
+            )
+        )
+        return countryInformation
     }
+}
+
+// MARK: - SetupUI
+extension CountryPageVC: UITableViewDelegate {
 
     func setupUI() {
         view.backgroundColor = .systemBackground
@@ -70,6 +68,26 @@ final class CountryPageVC: UIViewController {
         setupCountryName()
         setupTableView()
         configure(with: country)
+        setupAboutLabel()
+    }
+
+    func setupTableView() {
+        view.addSubview(tableView)
+
+        tableView.dataSource = self
+        tableView.delegate = self
+
+        tableView.register(DetailInformationCells.self, forCellReuseIdentifier: "DetailInformationCells")
+        tableView.register(FooterOfDetailTableView.self, forHeaderFooterViewReuseIdentifier: "footer")
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: countryName.bottomAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
     func setupCountryName() {
@@ -93,35 +111,25 @@ final class CountryPageVC: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500)
         ])
     }
-}
 
-// MARK: - SetupUI
-private extension CountryPageVC {
+    func setupAboutLabel() {
+        view.addSubview(aboutLabel)
+        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
+        aboutLabel.text = "About"
+        aboutLabel.backgroundColor = .red
 
-}
-
-// MARK: -ImagesCollectionViewSetup
-extension CountryPageVC: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.images.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesCollectionViewCell.identifier, for: indexPath) as? ImagesCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-
-        let image = self.images[indexPath.row]
-        cell.configure(with: image)
-        return cell
+        NSLayoutConstraint.activate([
+            aboutLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+            aboutLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        ])
     }
 }
 
 // MARK: - Extension UITableViewDataSource
 extension CountryPageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cellsName.count
+        let cellInformation = getCellModel(country)
+        return cellInformation.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,8 +139,18 @@ extension CountryPageVC: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let country = country
-        cell.configure(with: country)
+        let cellInformation = getCellModel(country)
+        let cellModel = cellInformation[indexPath.row]
+        cell.configure(model: cellModel)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = FooterOfDetailTableView(reuseIdentifier: "footer", country: country)
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
+        return 250
     }
 }
