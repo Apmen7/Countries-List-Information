@@ -1,20 +1,27 @@
 import UIKit
 
-final class CountriesListVC: UIViewController {
+protocol CountriesListViewProtocol: AnyObject {
+    func setCountries(countries: [Country])
+    func setupUI()
+}
 
+final class CountriesListView: UIViewController {
+
+// MARK: Properties
     private let apiManager = APIManager()
     private let tableView = UITableView()
     private var countries: [Country] = []
+    
+    var presenter: CountriesListPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        createData()
     }
 }
 
 // MARK: - Extension UITableViewDataSource
-extension CountriesListVC: UITableViewDataSource {
+extension CountriesListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         countries.count
     }
@@ -33,7 +40,7 @@ extension CountriesListVC: UITableViewDataSource {
 }
 
 // MARK: - Extension UITableViewDelegate
-extension CountriesListVC: UITableViewDelegate {
+extension CountriesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let country = countries[indexPath.row]
         let countryPageVC = CountryPageVC(country: country)
@@ -42,9 +49,17 @@ extension CountriesListVC: UITableViewDelegate {
     }
 }
 
-// MARK: - SetupUI
-private extension CountriesListVC {
 
+extension CountriesListView: CountriesListViewProtocol {
+// MARK: - Set countries func
+    func setCountries(countries: [Country]) {
+        self.countries = countries
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+// MARK: - SetupUI
     func setupUI() {
         title = "Countries"
         setupTableView()
@@ -66,23 +81,5 @@ private extension CountriesListVC {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-}
-
-// MARK: - Creating Data
-private extension CountriesListVC {
-
-    func createData() {
-
-        apiManager.getCountries { [weak self] countries in
-            guard let self = self else {
-                return
-            }
-            self.countries = countries
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
 }

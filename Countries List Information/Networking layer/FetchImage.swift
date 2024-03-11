@@ -27,5 +27,4 @@ final class FetchImage {
         }
         task.resume()
     }
-
 }

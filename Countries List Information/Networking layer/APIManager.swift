@@ -1,6 +1,10 @@
 import Foundation
 
-final class APIManager {
+protocol DataManagerProtocol {
+    func getCountries(completion: @escaping ([Country]) -> Void)
+}
+
+final class APIManager: DataManagerProtocol {
 
     func getCountries(completion: @escaping ([Country]) -> Void) {
         guard let url = URL(string: "https://rawgit.com/NikitaAsabin/" +

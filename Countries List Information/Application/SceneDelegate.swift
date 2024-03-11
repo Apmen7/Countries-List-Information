@@ -9,12 +9,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CountriesListVC()
-        window?.makeKeyAndVisible()
+        let viewController = CountriesListView()
+        let dataManager = APIManager()
+        let presenter = CountriesListPresenter(view: viewController, apiManager: dataManager)
+        viewController.presenter = presenter
 
-        let controller = CountriesListVC()
-        let navController = UINavigationController(rootViewController: controller)
-        window?.rootViewController = navController
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = UINavigationController(rootViewController: viewController)
+        self.window = window
+        window.makeKeyAndVisible()
     }
 }

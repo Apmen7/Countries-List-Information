@@ -2,6 +2,7 @@ import UIKit
 
 final class CountryInformationCell: UITableViewCell {
 
+// MARK: Properties
     private let countryFlag = UIImageView()
     private let countryName = UILabel()
     private let countryCapital = UILabel()
