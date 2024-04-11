@@ -6,9 +6,11 @@ protocol DataManagerProtocol {
 
 final class APIManager: DataManagerProtocol {
 
+    let url = "https://rawgit.com/NikitaAsabin/" +
+    "799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json"
+
     func getCountries(completion: @escaping ([Country]) -> Void) {
-        guard let url = URL(string: "https://rawgit.com/NikitaAsabin/" +
-"799e4502c9fc3e0ea7af439b2dfd88fa/raw/7f5c6c66358501f72fada21e04d75f64474a7888/page1.json") else {
+        guard let url = URL(string: url) else {
     print("Invalid url")
     return
         }

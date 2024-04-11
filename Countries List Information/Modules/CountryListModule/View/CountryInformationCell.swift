@@ -2,7 +2,7 @@ import UIKit
 
 final class CountryInformationCell: UITableViewCell {
 
-// MARK: Properties
+    // MARK: Properties
     private let countryFlag = UIImageView()
     private let countryName = UILabel()
     private let countryCapital = UILabel()
@@ -18,13 +18,13 @@ final class CountryInformationCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-// MARK: - Configure Cell
+    // MARK: - Configure Cell
     func configure(with country: Country) {
-        fetchImage.downloadFlags(with: country, imageView: countryFlag)
+        downloadFlagImage(with: country.countryInfo.flag)
         countryName.text = country.name
         countryCapital.text = country.capital
-        countryDescription.text = country.description
-        }
+        countryDescription.text = country.descriptionSmall
+    }
 }
 
 // MARK: - SetupUI
@@ -35,6 +35,24 @@ private extension CountryInformationCell {
         setupCountryName()
         setupCountryCapital()
         setupDescription()
+    }
+
+    func downloadFlagImage(with string: String) {
+        fetchImage.downloadImage(with: string) { imageData, error in
+            if let error = error {
+                print("No flag image", error)
+                DispatchQueue.main.async {
+                    self.countryFlag.image = UIImage(systemName: "flag.slash.fill")
+                }
+            }
+            if let imageData {
+                if let image = UIImage(data: imageData) {
+                    DispatchQueue.main.async {
+                        self.countryFlag.image = image
+                    }
+                }
+            }
+        }
     }
 
     func setupCountryFlag() {

@@ -7,11 +7,11 @@ protocol CountriesListViewProtocol: AnyObject {
 
 final class CountriesListView: UIViewController {
 
-// MARK: Properties
+    // MARK: Properties
     private let apiManager = APIManager()
     private let tableView = UITableView()
     private var countries: [Country] = []
-    
+
     var presenter: CountriesListPresenterProtocol!
 
     override func viewDidLoad() {
@@ -43,23 +43,21 @@ extension CountriesListView: UITableViewDataSource {
 extension CountriesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let country = countries[indexPath.row]
-        let countryPageVC = CountryPageVC(country: country)
+        let countryPageVC = CountryPageView(country: country)
 
         navigationController?.pushViewController(countryPageVC, animated: true)
     }
 }
 
-
 extension CountriesListView: CountriesListViewProtocol {
-// MARK: - Set countries func
+
     func setCountries(countries: [Country]) {
         self.countries = countries
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
-// MARK: - SetupUI
+
     func setupUI() {
         title = "Countries"
         setupTableView()

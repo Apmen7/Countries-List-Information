@@ -12,7 +12,7 @@ final class FooterOfDetailTableView: UITableViewHeaderFooterView {
 
     private let aboutLabel = UILabel()
     private let textView = UITextView()
-    var country: Country
+    private var country: Country
 
     init(reuseIdentifier: String?, country: Country) {
         self.country = country
@@ -38,7 +38,8 @@ final class FooterOfDetailTableView: UITableViewHeaderFooterView {
 
         NSLayoutConstraint.activate([
             aboutLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            aboutLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+            aboutLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            aboutLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10)
         ])
     }
 
@@ -52,8 +53,8 @@ final class FooterOfDetailTableView: UITableViewHeaderFooterView {
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor),
             textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10)
         ])
     }
 }

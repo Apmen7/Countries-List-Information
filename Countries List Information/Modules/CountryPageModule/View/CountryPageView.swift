@@ -1,20 +1,30 @@
 import UIKit
 
-final class CountryPageVC: UIViewController {
+protocol CountryPageViewProtocol: AnyObject {
+    func setupUI()
+    func loadImages()
+}
 
+final class CountryPageView: UIViewController {
+
+// MARK: Properties
     private let countryName = UILabel()
     private let countryDescription = UILabel()
     private let tableView = UITableView()
-    private var images: [UIImage] = []
+    private var images: [UIImage?] = []
     private let country: Country
     private let aboutLabel = UILabel()
+    private let pageControl = UIPageControl()
+    private let fetchImage = FetchImage.shared
+    
+    var presenter: CountryPagePresenterProtocol!
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.itemSize.width = 400
+        layout.itemSize.height = 400
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
 
@@ -29,11 +39,38 @@ final class CountryPageVC: UIViewController {
 
     override func viewDidLoad() {
         setupUI()
+        loadImages()
+    }
+}
+
+// MARK: - Load images of countries
+private extension CountryPageView {
+    func loadImages() {
+        let stringURLs: [String] = country.countryInfo.images
+
+        for string in stringURLs {
+            fetchImage.downloadImage(with: string) { imageData, error in
+                if let error {
+                    print("Broken link")
+                    return
+                }
+                if let imageData {
+                    if let image = UIImage(data: imageData) {
+                        self.images.append(image)
+                        if self.images.count == stringURLs.count {
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 // MARK: - Configure func and cell model creating
-private extension CountryPageVC {
+private extension CountryPageView {
     func configure(with country: Country) {
         countryName.text = country.name
     }
@@ -60,7 +97,7 @@ private extension CountryPageVC {
 }
 
 // MARK: - SetupUI
-extension CountryPageVC: UITableViewDelegate {
+extension CountryPageView {
 
     func setupUI() {
         view.backgroundColor = .systemBackground
@@ -69,6 +106,22 @@ extension CountryPageVC: UITableViewDelegate {
         setupTableView()
         configure(with: country)
         setupAboutLabel()
+        setupPageControl()
+    }
+
+    func setupPageControl() {
+        view.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+                   pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -40),
+                   pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = images.count
+        pageControl.pageIndicatorTintColor = .black
+        pageControl.currentPageIndicatorTintColor = .red
     }
 
     func setupTableView() {
@@ -104,12 +157,16 @@ extension CountryPageVC: UITableViewDelegate {
     func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -500)
         ])
+
+        collectionView.register(ImagesCell.self, forCellWithReuseIdentifier: "\(ImagesCell.self)")
     }
 
     func setupAboutLabel() {
@@ -125,8 +182,14 @@ extension CountryPageVC: UITableViewDelegate {
     }
 }
 
+extension CountryPageView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        pageControl.currentPage = indexPath.row
+    }
+}
+
 // MARK: - Extension UITableViewDataSource
-extension CountryPageVC: UITableViewDataSource {
+extension CountryPageView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellInformation = getCellModel(country)
         return cellInformation.count
@@ -153,4 +216,22 @@ extension CountryPageVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
         return 250
     }
+}
+
+extension CountryPageView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesCell.identifier, for: indexPath) as?
+                ImagesCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure()
+        cell.imageView.image = images[indexPath.row]
+
+        return cell
+    }
+
 }

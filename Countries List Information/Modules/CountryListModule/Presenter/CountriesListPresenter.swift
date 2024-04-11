@@ -12,22 +12,22 @@ protocol CountriesListPresenterProtocol: AnyObject {
 }
 
 final class CountriesListPresenter: CountriesListPresenterProtocol {
-    
-// MARK: Properties
-    weak var view: CountriesListViewProtocol?
-    var apiManager: DataManagerProtocol
-    var countries: [Country] = []
+
+    // MARK: Properties
+    private weak var view: CountriesListViewProtocol?
+    private let apiManager: DataManagerProtocol
+    private var countries: [Country] = []
 
     init(view: CountriesListViewProtocol, apiManager: DataManagerProtocol) {
         self.view = view
         self.apiManager = apiManager
         createData()
     }
-    
-// MARK: Getting countries from API
+
+    // MARK: Getting countries from API
     func createData() {
         apiManager.getCountries { [weak self] countries in
-            guard let self = self else {
+            guard let self else {
                 return
             }
             self.countries = countries

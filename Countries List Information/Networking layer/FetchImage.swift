@@ -4,26 +4,17 @@ final class FetchImage {
 
     static let shared = FetchImage()
 
-    private init() {
-
-    }
-
-    func downloadFlags(with country: Country, imageView: UIImageView) {
-        guard let url = URL(string: country.countryInfo.flag) else {
+    func downloadImage(with string: String, completion: @escaping (Data?, Error?) -> () ) {
+        guard let url = URL(string: string) else {
             print("Invalid url")
             return
         }
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error {
-                print("Error loading image: \(error)")
+                print("No data")
                 return
             }
-
-            if let data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    imageView.image = image
-                }
-            }
+            completion(data, nil)
         }
         task.resume()
     }
