@@ -1,7 +1,6 @@
 import UIKit
 
 protocol CountryPageViewProtocol: AnyObject {
-    func setupUI()
     func loadImages()
 }
 
@@ -16,7 +15,7 @@ final class CountryPageView: UIViewController {
     private let aboutLabel = UILabel()
     private let pageControl = UIPageControl()
     private let fetchImage = FetchImage.shared
-    
+
     var presenter: CountryPagePresenterProtocol!
 
     private let collectionView: UICollectionView = {
@@ -38,12 +37,11 @@ final class CountryPageView: UIViewController {
     }
 
     override func viewDidLoad() {
-        setupUI()
         loadImages()
+        setupUI()
     }
 }
 
-// MARK: - Load images of countries
 private extension CountryPageView {
     func loadImages() {
         let stringURLs: [String] = country.countryInfo.images
@@ -113,13 +111,14 @@ extension CountryPageView {
         view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
 
+        pageControl.numberOfPages = images.count
+        pageControl.currentPage = 0
+
         NSLayoutConstraint.activate([
                    pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -40),
                    pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
 
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = images.count
         pageControl.pageIndicatorTintColor = .black
         pageControl.currentPageIndicatorTintColor = .red
     }
@@ -158,6 +157,7 @@ extension CountryPageView {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.delegate = self
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -188,7 +188,6 @@ extension CountryPageView: UICollectionViewDelegate {
     }
 }
 
-// MARK: - Extension UITableViewDataSource
 extension CountryPageView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellInformation = getCellModel(country)

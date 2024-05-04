@@ -8,7 +8,6 @@
 import Foundation
 
 protocol CountryPagePresenterProtocol: AnyObject {
-
 }
 
 final class CountryPagePresenter: CountryPagePresenterProtocol {

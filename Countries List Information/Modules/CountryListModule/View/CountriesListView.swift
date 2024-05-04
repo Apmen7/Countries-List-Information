@@ -2,7 +2,6 @@ import UIKit
 
 protocol CountriesListViewProtocol: AnyObject {
     func setCountries(countries: [Country])
-    func setupUI()
 }
 
 final class CountriesListView: UIViewController {
@@ -10,13 +9,30 @@ final class CountriesListView: UIViewController {
     // MARK: Properties
     private let apiManager = APIManager()
     private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
     private var countries: [Country] = []
+    private var nextPage: String = ""
 
     var presenter: CountriesListPresenterProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupRefreshControl()
+    }
+}
+
+extension CountriesListView {
+
+    @objc
+    func refreshData() {
+        presenter.createData()
+        self.tableView.refreshControl?.endRefreshing()
+    }
+
+    func setupRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
 }
 
@@ -36,6 +52,14 @@ extension CountriesListView: UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         cell.configure(with: country)
         return cell
+    }
+}
+
+extension CountriesListView {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == countries.count - 1, presenter.isPaginationAvailable {
+            presenter.loadMoreData()
+        }
     }
 }
 

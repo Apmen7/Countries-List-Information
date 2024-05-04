@@ -1,14 +1,9 @@
-//
-//  CountriesListPresenter.swift
-//  Countries List Information
-//
-//  Created by Armen on 06.03.2024.
-//
-
 import Foundation
 
 protocol CountriesListPresenterProtocol: AnyObject {
     func createData()
+    func loadMoreData()
+    var isPaginationAvailable: Bool { get }
 }
 
 final class CountriesListPresenter: CountriesListPresenterProtocol {
@@ -17,6 +12,8 @@ final class CountriesListPresenter: CountriesListPresenterProtocol {
     private weak var view: CountriesListViewProtocol?
     private let apiManager: DataManagerProtocol
     private var countries: [Country] = []
+    private var nextPage = ""
+    private(set) var isPaginationAvailable = true
 
     init(view: CountriesListViewProtocol, apiManager: DataManagerProtocol) {
         self.view = view
@@ -24,14 +21,27 @@ final class CountriesListPresenter: CountriesListPresenterProtocol {
         createData()
     }
 
-    // MARK: Getting countries from API
     func createData() {
-        apiManager.getCountries { [weak self] countries in
+        apiManager.getCountries { [weak self] countries, nextPage in
             guard let self else {
                 return
             }
+            self.nextPage = nextPage
             self.countries = countries
             self.view?.setCountries(countries: countries)
+            isPaginationAvailable = true
+        }
+    }
+
+    func loadMoreData() {
+        apiManager.getMoreCountries(url: nextPage) { [weak self] countries, _ in
+            guard let self else {
+                return
+            }
+            self.countries.append(contentsOf: countries)
+            self.view?.setCountries(countries: self.countries)
+            self.nextPage = nextPage
+            self.isPaginationAvailable = false
         }
     }
 }

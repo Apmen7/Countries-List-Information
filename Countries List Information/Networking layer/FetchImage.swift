@@ -1,6 +1,10 @@
 import UIKit
 
-final class FetchImage {
+protocol FetchImageProtocol {
+    func downloadImage(with string: String, completion: @escaping (Data?, Error?) -> () )
+}
+
+final class FetchImage: FetchImageProtocol {
 
     static let shared = FetchImage()
 

@@ -1,13 +1,7 @@
-//
-//  FooterOfDetailTableView.swift
-//  Countries List Information
-//
-//  Created by Armen on 27.02.2024.
-//
-
 import UIKit
 
 final class FooterOfDetailTableView: UITableViewHeaderFooterView {
+    
     static let identifier = "TableFooter"
 
     private let aboutLabel = UILabel()
