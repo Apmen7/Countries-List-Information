@@ -58,6 +58,7 @@ private extension CountryPageView {
                         if self.images.count == stringURLs.count {
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
+                                self.pageControl.numberOfPages = self.images.count
                             }
                         }
                     }
@@ -111,12 +112,11 @@ extension CountryPageView {
         view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
 
-        pageControl.numberOfPages = images.count
         pageControl.currentPage = 0
 
         NSLayoutConstraint.activate([
-                   pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -40),
-                   pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            pageControl.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: -40),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
 
         pageControl.pageIndicatorTintColor = .black
@@ -232,5 +232,4 @@ extension CountryPageView: UICollectionViewDataSource {
 
         return cell
     }
-
 }
