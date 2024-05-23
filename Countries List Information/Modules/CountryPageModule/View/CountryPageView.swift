@@ -6,7 +6,7 @@ protocol CountryPageViewProtocol: AnyObject {
 
 final class CountryPageView: UIViewController {
 
-// MARK: Properties
+    // MARK: Properties
     private let countryName = UILabel()
     private let countryDescription = UILabel()
     private let tableView = UITableView()
@@ -16,6 +16,7 @@ final class CountryPageView: UIViewController {
     private let pageControl = UIPageControl()
     private let fetchImage = FetchImage.shared
 
+    // swiftlint:disable:next implicitly_unwrapped_optional
     var presenter: CountryPagePresenterProtocol!
 
     private let collectionView: UICollectionView = {
@@ -32,39 +33,14 @@ final class CountryPageView: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
-        loadImages()
+        super.viewDidLoad()
         setupUI()
-    }
-}
-
-private extension CountryPageView {
-    func loadImages() {
-        let stringURLs: [String] = country.countryInfo.images
-
-        for string in stringURLs {
-            fetchImage.downloadImage(with: string) { imageData, error in
-                if let error {
-                    print("Broken link")
-                    return
-                }
-                if let imageData {
-                    if let image = UIImage(data: imageData) {
-                        self.images.append(image)
-                        if self.images.count == stringURLs.count {
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadData()
-                                self.pageControl.numberOfPages = self.images.count
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -213,23 +189,27 @@ extension CountryPageView: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
-        return 250
+        250
     }
 }
 
 extension CountryPageView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        // swiftlint:disable:next implicit_return
+        return country.countryInfo.images.isEmpty ? 1 : country.countryInfo.images.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagesCell.identifier, for: indexPath) as?
-                ImagesCell else {
-            return UICollectionViewCell()
+    ImagesCell else {
+        return UICollectionViewCell()
         }
-        cell.configure()
-        cell.imageView.image = images[indexPath.row]
-
+        if country.countryInfo.images.isEmpty {
+            cell.imageView.image = UIImage(named: "noimage")
+        } else {
+            let imageURL = country.countryInfo.images[indexPath.row]
+            cell.configure(with: imageURL)
+        }
         return cell
     }
 }

@@ -9,10 +9,12 @@ final class CountriesListView: UIViewController {
     // MARK: Properties
     private let apiManager = APIManager()
     private let tableView = UITableView()
+    private let indicator = UIActivityIndicatorView()
     private let refreshControl = UIRefreshControl()
     private var countries: [Country] = []
     private var nextPage: String = ""
 
+// swiftlint:disable:next implicitly_unwrapped_optional
     var presenter: CountriesListPresenterProtocol!
 
     override func viewDidLoad() {
@@ -58,7 +60,11 @@ extension CountriesListView: UITableViewDataSource {
 extension CountriesListView {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == countries.count - 1, presenter.isPaginationAvailable {
-            presenter.loadMoreData()
+            indicator.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.presenter.loadMoreData()
+                self.indicator.stopAnimating()
+            }
         }
     }
 }
@@ -85,6 +91,7 @@ extension CountriesListView: CountriesListViewProtocol {
     func setupUI() {
         title = "Countries"
         setupTableView()
+        setupActivityIndicator()
     }
 
     func setupTableView() {
@@ -102,6 +109,17 @@ extension CountriesListView: CountriesListViewProtocol {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+
+    func setupActivityIndicator() {
+        view.addSubview(indicator)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+
+        NSLayoutConstraint.activate([
+            indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

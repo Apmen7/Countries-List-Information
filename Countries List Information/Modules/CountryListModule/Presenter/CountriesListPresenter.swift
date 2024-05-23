@@ -8,7 +8,7 @@ protocol CountriesListPresenterProtocol: AnyObject {
 
 final class CountriesListPresenter: CountriesListPresenterProtocol {
 
-    // MARK: Properties
+// MARK: Properties
     private weak var view: CountriesListViewProtocol?
     private let apiManager: DataManagerProtocol
     private var countries: [Country] = []

@@ -14,6 +14,7 @@ final class CountryInformationCell: UITableViewCell {
         setupCell()
     }
 
+    @available (*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,9 +42,6 @@ private extension CountryInformationCell {
         fetchImage.downloadImage(with: string) { imageData, error in
             if let error = error {
                 print("No flag image", error)
-                DispatchQueue.main.async {
-                    self.countryFlag.image = UIImage(systemName: "flag.slash.fill")
-                }
             }
             if let imageData {
                 if let image = UIImage(data: imageData) {
@@ -66,6 +64,7 @@ private extension CountryInformationCell {
             countryFlag.widthAnchor.constraint(equalToConstant: 60),
             countryFlag.heightAnchor.constraint(equalToConstant: 60)
         ])
+        countryFlag.image = UIImage(systemName: "flag.slash.fill")
     }
 
     func setupCountryName() {

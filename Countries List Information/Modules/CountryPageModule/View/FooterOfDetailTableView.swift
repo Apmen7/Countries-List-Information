@@ -1,7 +1,7 @@
 import UIKit
 
 final class FooterOfDetailTableView: UITableViewHeaderFooterView {
-    
+
     static let identifier = "TableFooter"
 
     private let aboutLabel = UILabel()
@@ -14,6 +14,7 @@ final class FooterOfDetailTableView: UITableViewHeaderFooterView {
         setupUI()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

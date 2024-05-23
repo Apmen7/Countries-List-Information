@@ -1,10 +1,3 @@
-//
-//  CountryPagePresenter.swift
-//  Countries List Information
-//
-//  Created by Armen on 10.04.2024.
-//
-
 import Foundation
 
 protocol CountryPagePresenterProtocol: AnyObject {

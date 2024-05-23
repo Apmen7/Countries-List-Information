@@ -22,7 +22,6 @@
 		C0D4FDC72B5728AC00C86FCE /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4FDC62B5728AC00C86FCE /* APIManager.swift */; };
 		C0D4FDC92B572D6C00C86FCE /* CountriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4FDC82B572D6C00C86FCE /* CountriesData.swift */; };
 		C0F0D23A2B7599FB0094D88E /* FetchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F0D2392B7599FB0094D88E /* FetchImage.swift */; };
-		C0F3BB052BB6A24900C6C969 /* FetchImagesOfCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3BB042BB6A24900C6C969 /* FetchImagesOfCountries.swift */; };
 		C0F3BB072BC6C3B000C6C969 /* CountryPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F3BB062BC6C3B000C6C969 /* CountryPagePresenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		C0D4FDC62B5728AC00C86FCE /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C0D4FDC82B572D6C00C86FCE /* CountriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesData.swift; sourceTree = "<group>"; };
 		C0F0D2392B7599FB0094D88E /* FetchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImage.swift; sourceTree = "<group>"; };
-		C0F3BB042BB6A24900C6C969 /* FetchImagesOfCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImagesOfCountries.swift; sourceTree = "<group>"; };
 		C0F3BB062BC6C3B000C6C969 /* CountryPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPagePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,7 +189,6 @@
 			children = (
 				C0D4FDC62B5728AC00C86FCE /* APIManager.swift */,
 				C0F0D2392B7599FB0094D88E /* FetchImage.swift */,
-				C0F3BB042BB6A24900C6C969 /* FetchImagesOfCountries.swift */,
 			);
 			path = "Networking layer";
 			sourceTree = "<group>";
@@ -265,6 +262,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C074DC302B4EC6F90077E929 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -293,7 +291,6 @@
 				C08DF96F2B3D4B2000832586 /* AppDelegate.swift in Sources */,
 				C03FF35B2B53DF40009F3DC2 /* CountryInformationCell.swift in Sources */,
 				C0A8F0B42B6DA4050090F58B /* CountryPageView.swift in Sources */,
-				C0F3BB052BB6A24900C6C969 /* FetchImagesOfCountries.swift in Sources */,
 				C0D4FDC92B572D6C00C86FCE /* CountriesData.swift in Sources */,
 				C0AB57532B97D83E0048094F /* CountriesListPresenter.swift in Sources */,
 				C08DF9712B3D4B2000832586 /* SceneDelegate.swift in Sources */,

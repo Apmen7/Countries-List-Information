@@ -1,14 +1,5 @@
 import Foundation
 
-// MARK: - CountriesData
-
-struct CountriesData: Decodable {
-
-    let next: String
-    let countries: [Country]
-}
-
-// MARK: - Country
 struct Country: Decodable {
     let name: String
     let continent: String
@@ -27,8 +18,12 @@ struct Country: Decodable {
     }
 }
 
-// MARK: - CountryInfo
 struct CountryInfo: Codable {
     let images: [String]
     let flag: String
+}
+
+struct CountriesData: Decodable {
+    let next: String
+    let countries: [Country]
 }
